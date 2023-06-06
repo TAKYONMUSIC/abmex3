@@ -5,7 +5,12 @@ Description: Plugin para adicionar opção de pagamento com a plataforma ABMEX n
 Version: 1.0
 */
 
-add_action('plugins_loaded', 'init_abmex_gateway');
+
+
+define('WP_PLUGIN_DIR', '/bitnami/wordpress/wp-content/plugins' );
+require_once( WP_PLUGIN_DIR . '/woocommerce/includes/abstracts/abstract-wc-payment-gateway.php' );
+
+#add_action('plugins_loaded', 'init_abmex_gateway');
 
 function init_abmex_gateway()
 {
@@ -13,7 +18,7 @@ function init_abmex_gateway()
         return;
     }
 
-    class WC_Abmex extends WC_Payment_Gateway
+class WC_Abmex extends WC_Payment_Gateway 
     {
         public function __construct()
         {
